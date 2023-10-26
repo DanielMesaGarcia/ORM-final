@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 @Table(name = "Pedidos")
@@ -21,7 +23,9 @@ public class Pedidos implements Serializable {
 
     private String fecha;
 
-    private long idusuario;
+    @OneToOne
+    @JoinColumn(name = "idusuario")
+    private Usuarios usuario;
 
     public long getIdPedidos() {
         return id;
@@ -47,22 +51,32 @@ public class Pedidos implements Serializable {
         this.fecha = fecha;
     }
 
-    public long getIdUsuario() {
-        return idusuario;
-    }
+    
 
-    public void setUsuario(long idusuario) {
-        this.idusuario = idusuario;
-    }
+    public long getId() {
+		return id;
+	}
 
-    public Pedidos(String estado, String fecha, long idusuario) {
-        super();
-        this.estado = estado;
-        this.fecha = fecha;
-        this.idusuario = idusuario;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public Pedidos() {
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
+	}
+
+	public Pedidos(String estado, String fecha, Usuarios usuario) {
+		super();
+		this.estado = estado;
+		this.fecha = fecha;
+		this.usuario = usuario;
+	}
+
+	public Pedidos() {
 
     }
 }
