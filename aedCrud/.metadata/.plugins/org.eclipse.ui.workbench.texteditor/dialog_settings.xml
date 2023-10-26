@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="idpedido"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="true"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="pedido"/>
+			<item value="Pedidos"/>
+			<item value="idDetalles"/>
+			<item value="idPedidos"/>
+			<item value="id_usuarios"/>
+			<item value="usuario"/>
+			<item value="Usuario"/>
+			<item value="detalle"/>
+			<item value="Detalle"/>
+			<item value="usuarios"/>
+			<item value="Usuarios"/>
+			<item value="example"/>
+		</list>
+		<list key="replacehistory">
+			<item value="idpedido"/>
+			<item value="long"/>
+			<item value="id"/>
+			<item value="detalle"/>
+			<item value="Detalle"/>
+			<item value="Direcciones"/>
+			<item value="direccion"/>
+			<item value="pedido"/>
+			<item value="Pedido"/>
+			<item value="Direccione"/>
+			<item value="detalles"/>
+			<item value="Detalles"/>
+			<item value="Pedidos"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="-77"/>
+		<item key="DIALOG_Y_ORIGIN" value="63"/>
+		<item key="DIALOG_WIDTH" value="414"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

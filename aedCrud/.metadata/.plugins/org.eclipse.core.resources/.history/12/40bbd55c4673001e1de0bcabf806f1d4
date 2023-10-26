@@ -1,0 +1,22 @@
+package com.daniel.db_aed.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+
+import com.daniel.db_aed.entity.models.Usuarios;
+import com.daniel.db_aed.entity.services.IUsuariosService;
+import com.daniel.db_aed.entity.services.UsuariosServiceImpl;
+@RestController
+public class UsuariosController {
+	@Autowired
+	IUsuariosService usuarioService;
+	
+	@GetMapping("/usuarios")
+	public List<Usuarios> getAllUsuarios(){
+		return usuarioService.getAll();
+	}
+	
+	
+}

@@ -1,0 +1,23 @@
+package com.daniel.db_aed.entity.models;
+
+import java.io.Serializable;
+
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+@Table(name = "usuarios")
+public class Usuario implements Serializable{
+	private static final long serialversionUID =1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idUsuarios;
+	
+	private String Nombre;
+	
+	private String Correo;
+}

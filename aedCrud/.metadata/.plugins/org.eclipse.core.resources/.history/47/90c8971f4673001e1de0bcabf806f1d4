@@ -1,0 +1,12 @@
+package com.daniel.db_aed.controllers;
+
+@RestController
+public class UsuariosController {
+	@Autowired
+	IUsuariosService usuarioService;
+	
+	@GetMapping("/usuarios")
+	public List<Usuarios> getAllUsuarios(){
+		return usuario
+	}
+}
