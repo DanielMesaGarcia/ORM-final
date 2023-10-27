@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.correo }}</td>
+          <td>
+            <ion-button (click)="updateUsuario(usuario.id)">Update</ion-button>
+            <ion-button (click)="deleteUsuario(usuario.id)">Delete</ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <form>
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="nombre" name="nombre" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-input type="email" [(ngModel)]="correo" name="correo" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="crearUsuario()">Crear</ion-button>
+    </form>
+  </div>
+</ion-content>
+  
