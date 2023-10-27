@@ -10,7 +10,7 @@ export class UsuarioService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     })
   };
 
@@ -20,13 +20,21 @@ export class UsuarioService {
     return this.httpClient.get(this.endpoint);
   }
 
-  createUsuario(usuario: any): Observable<any> {
-    return this.httpClient.post(this.endpoint, usuario, this.httpOptions);
+  createUsuario(nombre: any, correo: any): Observable<any> {
+    let body = new URLSearchParams();
+    body.append("nombre", nombre);
+    body.append("correo", correo);
+    console.log(body);
+    return this.httpClient.post(this.endpoint, body, this.httpOptions);
   }
+  
 
-  updateUsuario(id: number, usuario: any): Observable<any> {
-    const url = `${this.endpoint}/${id}`;
-    return this.httpClient.put(url, usuario, this.httpOptions);
+  updateUsuario(id: number, nombre: any, correo: any): Observable<any> {
+    let body = new URLSearchParams();
+    body.append("nombre", nombre);
+    body.append("correo", correo);
+    console.log(body);
+    return this.httpClient.put(`${this.endpoint}/${id}`, body, this.httpOptions);
   }
 
   deleteUsuario(id: number): Observable<any> {

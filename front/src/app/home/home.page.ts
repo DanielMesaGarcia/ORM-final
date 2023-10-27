@@ -33,7 +33,7 @@ export class HomePage {
       nombre: this.nombre,
       correo: this.correo,
     };
-    this.usuarioService.createUsuario(nuevoUsuario).subscribe(
+    this.usuarioService.createUsuario(this.nombre, this.correo).subscribe(
       (response) => {
         this.getAllUsuarios();
         this.resetForm();
@@ -45,7 +45,9 @@ export class HomePage {
   }
 
   updateUsuario(id: number) {
-    // Lógica para actualizar un usuario específico
+    this.usuarioService.updateUsuario(id, this.nombre, this.correo).subscribe(() => {
+      this.getAllUsuarios();
+      });
   }
 
   deleteUsuario(id: number) {
