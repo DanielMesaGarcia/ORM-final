@@ -31,7 +31,7 @@ public class DetallesServiceImpl implements IDetallesService{
 	@Override
 	public void put(Detalles detalle, long id) {
 		detalleDao.findById(id).ifPresent((x)->{
-			detalle.setIdDetalles(id);
+			detalle.setId(id);
 			detalleDao.save(detalle);
 		});
 	}

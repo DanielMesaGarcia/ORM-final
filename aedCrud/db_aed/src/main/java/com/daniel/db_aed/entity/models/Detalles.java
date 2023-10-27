@@ -26,13 +26,6 @@ public class Detalles implements Serializable{
     @JoinColumn(name = "idpedido")
     private Pedidos pedido;
 
-	public long getIdDetalles() {
-		return id;
-	}
-
-	public void setIdDetalles(long id) {
-		this.id = id;
-	}
 
 	public String getProducto() {
 		return producto;

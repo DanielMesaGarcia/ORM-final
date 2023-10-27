@@ -27,14 +27,6 @@ public class Pedidos implements Serializable {
     @JoinColumn(name = "idusuario")
     private Usuarios usuario;
 
-    public long getIdPedidos() {
-        return id;
-    }
-
-    public void setIdPedidos(long id) {
-        this.id = id;
-    }
-
     public String getEstado() {
         return estado;
     }

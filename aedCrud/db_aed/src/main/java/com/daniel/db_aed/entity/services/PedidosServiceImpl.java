@@ -31,7 +31,7 @@ public class PedidosServiceImpl implements IPedidosService{
 	@Override
 	public void put(Pedidos pedido, long id) {
 		pedidoDao.findById(id).ifPresent((x)->{
-			pedido.setIdPedidos(id);
+			pedido.setId(id);
 			pedidoDao.save(pedido);
 		});
 	}
