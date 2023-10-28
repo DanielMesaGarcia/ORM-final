@@ -1,13 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>pedidos</ion-title>
+    <ion-title>
+      Pedidos
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pedidos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="container">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th>ID usuario</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos">
+          <td>{{ pedido.id }}</td>
+          <td>{{ pedido.estado }}</td>
+          <td>{{ pedido.fecha }}</td>
+          <td>{{ pedido.usuario.id }}</td>
+          <td>
+            <ion-button (click)="updatePedido(pedido.id)">Update</ion-button>
+            <ion-button (click)="deletePedido(pedido.id)">Delete</ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <form>
+      <ion-item>
+        <ion-label position="stacked">Estado</ion-label>
+        <ion-input type="text" [(ngModel)]="cantidad" name="cantidad" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Fecha</ion-label>
+        <ion-input type="text" [(ngModel)]="producto" name="producto" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">ID usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="idusuario" name="idusuario" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="crearPedido()">Crear</ion-button>
+    </form>
+  </div> 
 </ion-content>

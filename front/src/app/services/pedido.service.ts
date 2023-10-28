@@ -20,19 +20,23 @@ export class PedidoService {
     return this.httpClient.get(this.endpoint);
   }
 
-  createPedido(cantidad: any, producto: any, idusuario: any): Observable<any> {
+  getUsuarios(): Observable<any> {
+    return this.httpClient.get('http://localhost:8080/usuarios');
+  }
+
+  createPedido(estado: any, fecha: any, idusuario: any): Observable<any> {
     let body = new URLSearchParams();
-    body.append("cantidad", cantidad);
-    body.append("producto", producto);
+    body.append("estado", estado);
+    body.append("fecha", fecha);
     body.append("usuario.id", idusuario);
     console.log(body);
     return this.httpClient.post(this.endpoint, body.toString(), this.httpOptions);
   }
 
-  updatePedido(id: number, cantidad: any, producto: any, idusuario: any): Observable<any> {
+  updatePedido(id: number, estado: any, fecha: any, idusuario: any): Observable<any> {
     let body = new URLSearchParams();
-    body.append("cantidad", cantidad);
-    body.append("producto", producto);
+    body.append("estado", estado);
+    body.append("fecha", fecha);
     body.append("usuario.id", idusuario);
     console.log(body);
     return this.httpClient.put(`${this.endpoint}/${id}`, body.toString(), this.httpOptions);
