@@ -19,20 +19,25 @@ export class DireccionService {
   getDirecciones(): Observable<any> {
     return this.httpClient.get(this.endpoint);
   }
-
-  createDireccion(direccion: any, ciudad: any): Observable<any> {
+  getUsuarios(): Observable<any> {
+    return this.httpClient.get('http://localhost:8080/usuarios');
+  }
+  
+  createDireccion(direccion: any, ciudad: any, idusuario: any): Observable<any> {
     let body = new URLSearchParams();
     body.append("direccion", direccion);
     body.append("ciudad", ciudad);
+    body.append("idusuario", idusuario);
     console.log(body);
     return this.httpClient.post(this.endpoint, body.toString(), this.httpOptions);
   }
   
 
-  updateDireccion(id: number, direccion: any, ciudad: any): Observable<any> {
+  updateDireccion(id: number, direccion: any, ciudad: any, idusuario: any): Observable<any> {
     let body = new URLSearchParams();
     body.append("direccion", direccion);
     body.append("ciudad", ciudad);
+    body.append("idusuario", idusuario);
     console.log(body);
     return this.httpClient.put(`${this.endpoint}/${id}`, body.toString(), this.httpOptions);
   }
