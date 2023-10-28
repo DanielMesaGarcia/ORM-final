@@ -1,0 +1,42 @@
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+  
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+  
+      th {
+      }
+  
+      tr:nth-child(even) {
+      }
+  
+      tr:hover {
+      }
+  
+      button {
+        margin-right: 5px;
+      }
+    }
+  
+    form {
+      margin-top: 20px;
+  
+      ion-item {
+        margin-bottom: 10px;
+      }
+  
+      ion-button {
+        margin-top: 10px;
+      }
+    }
+  }
+  
