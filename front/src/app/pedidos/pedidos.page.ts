@@ -11,12 +11,13 @@ export class PedidosPage implements OnInit {
   cantidad: string = '';
   producto: string = '';
   idusuario: string = '';
-  constructor(private pedidoService: PedidoService) {}
+  productoError: boolean = false;
+  constructor(private pedidoService: PedidoService) { }
 
   ngOnInit() {
     this.getAllPedidos();
   }
-
+  errorMessage: string = '';
   getAllPedidos() {
     this.pedidoService.getPedidos().subscribe(
       (pedidosResponse) => {
@@ -39,25 +40,50 @@ export class PedidosPage implements OnInit {
   }
 
   crearPedido() {
-    const nuevoPedido = {
-      cantidad: this.cantidad,
-      producto: this.producto,
-    };
-    this.pedidoService.createPedido(this.cantidad, this.producto, this.idusuario).subscribe(
-      (response) => {
-        this.getAllPedidos();
-        this.resetForm();
-      },
-      (error) => {
-        console.error('Error creating order: ', error);
-      }
-    );
+    if (this.producto.trim() === '' || this.cantidad.trim() === '' || this.idusuario.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
+    if (this.validateDateFormat(this.producto)) {
+      this.productoError = false;
+      const nuevoPedido = {
+        cantidad: this.cantidad,
+        producto: this.producto,
+      };
+      this.pedidoService.createPedido(this.cantidad, this.producto, this.idusuario).subscribe(
+        (response) => {
+          this.getAllPedidos();
+          this.resetForm();
+        },
+        (error) => {
+          console.error('Error creating order: ', error);
+        }
+      );
+    } else {
+      this.productoError = true;
+      console.error('La fecha debe estar en formato yyyy-mm-dd');
+    }
   }
 
   updatePedido(id: number) {
-    this.pedidoService.updatePedido(id, this.cantidad, this.producto, this.idusuario).subscribe(() => {
-      this.getAllPedidos();
-    });
+    if (this.producto.trim() === '' || this.cantidad.trim() === '' || this.idusuario.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
+    if (this.validateDateFormat(this.producto)) {
+      this.productoError = false; // Resetting the error state
+      this.pedidoService.updatePedido(id, this.cantidad, this.producto, this.idusuario).subscribe(() => {
+        this.getAllPedidos();
+      });
+    } else {
+      this.productoError = true;
+      console.error('La fecha debe estar en formato yyyy-mm-dd');
+    }
+  }
+
+  validateDateFormat(date: string) {
+    const pattern = /^\d{4}-\d{2}-\d{2}$/;
+    return pattern.test(date);
   }
 
   deletePedido(id: number) {
@@ -74,5 +100,6 @@ export class PedidosPage implements OnInit {
   resetForm() {
     this.cantidad = '';
     this.producto = '';
+    this.productoError = false;
   }
 }

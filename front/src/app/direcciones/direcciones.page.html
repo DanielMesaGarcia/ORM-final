@@ -3,7 +3,7 @@
     <ion-title>
       Direcciones
     </ion-title>
-    <ion-button color="light"><a href="/home">Home</a></ion-button>
+    <ion-button color="light"><a href="/home">Usuarios</a></ion-button>
     <ion-button color="light"><a href="/pedidos">Pedidos</a></ion-button>
     <ion-button color="light"><a href="/detalles">Detalles</a></ion-button>
   </ion-toolbar>
@@ -35,7 +35,9 @@
         </tr>
       </tbody>
     </table>
-
+    <div *ngIf="errorMessage" style="color: red;">
+      {{ errorMessage }}
+    </div>
     <form>
       <ion-item>
         <ion-label position="stacked">Direccion</ion-label>

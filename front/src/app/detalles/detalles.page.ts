@@ -11,7 +11,7 @@ export class DetallesPage implements OnInit {
   cantidad: string = '';
   producto: string = '';
   idpedido: string = '';
-
+  productoError: boolean = false;
   constructor(private detallesService: DetallesService) {}
 
   ngOnInit() {
@@ -40,22 +40,36 @@ export class DetallesPage implements OnInit {
   }
 
   crearDetalle() {
-    const nuevoDetalle = {
-      cantidad: this.cantidad,
-      producto: this.producto,
-    };
-    this.detallesService.createDetalle(this.cantidad, this.producto, this.idpedido).subscribe(
-      (response) => {
-        this.getAllDetalles();
-        this.resetForm();
-      },
-      (error) => {
-        console.error('Error creating detail: ', error);
-      }
-    );
+    if (this.producto.trim() === '' || this.cantidad.trim() === '' || this.idpedido.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
+    if (!isNaN(parseFloat(this.cantidad)) && isFinite(+this.cantidad)) {
+      this.productoError = false;
+      const nuevoDetalle = {
+        cantidad: this.cantidad,
+        producto: this.producto,
+      };
+      this.detallesService.createDetalle(this.cantidad, this.producto, this.idpedido).subscribe(
+        (response) => {
+          this.getAllDetalles();
+          this.resetForm();
+        },
+        (error) => {
+          console.error('Error creating detail: ', error);
+        }
+      );
+    } else {
+      this.productoError = true;
+      console.error('El campo producto debe ser un número');
+    }
   }
-
+  errorMessage: string = '';
   updateDetalle(id: number) {
+    if (this.producto.trim() === '' || this.cantidad.trim() === '' || this.idpedido.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
     this.detallesService.updateDetalle(id, this.cantidad, this.producto, this.idpedido).subscribe(() => {
       this.getAllDetalles();
     });
@@ -75,5 +89,6 @@ export class DetallesPage implements OnInit {
   resetForm() {
     this.cantidad = '';
     this.producto = '';
+    this.productoError = false;
   }
 }

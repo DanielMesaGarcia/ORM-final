@@ -3,7 +3,7 @@
     <ion-title>
       Pedidos
     </ion-title>
-    <ion-button color="light"><a href="/home">Home</a></ion-button>
+    <ion-button color="light"><a href="/home">Usuarios</a></ion-button>
     <ion-button color="light"><a href="/direcciones">Direcciones</a></ion-button>
     <ion-button color="light"><a href="/detalles">Detalles</a></ion-button>
   </ion-toolbar>
@@ -35,7 +35,9 @@
         </tr>
       </tbody>
     </table>
-
+    <div *ngIf="errorMessage" style="color: red;">
+      {{ errorMessage }}
+    </div>
     <form>
       <ion-item>
         <ion-label position="stacked">Estado</ion-label>
@@ -45,6 +47,7 @@
       <ion-item>
         <ion-label position="stacked">Fecha</ion-label>
         <ion-input type="text" [(ngModel)]="producto" name="producto" required></ion-input>
+        <p *ngIf="productoError" [ngStyle]="{'color': 'red'}">La fecha debe estar en formato yyyy-mm-dd</p>
       </ion-item>
 
       <ion-item>

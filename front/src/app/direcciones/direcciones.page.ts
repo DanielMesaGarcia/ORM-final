@@ -11,6 +11,7 @@ export class DireccionesPage implements OnInit {
   direccion: string = '';
   ciudad: string = '';
   idusuario: string = '';
+  errorMessage: string = '';
   constructor(private direccionService: DireccionService) {}
 
   ngOnInit() {
@@ -41,6 +42,10 @@ export class DireccionesPage implements OnInit {
   
 
   crearDireccion() {
+    if (this.direccion.trim() === '' || this.ciudad.trim() === '' || this.idusuario.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
     const nuevaDireccion = {
       direccion: this.direccion,
       ciudad: this.ciudad,
@@ -57,6 +62,10 @@ export class DireccionesPage implements OnInit {
   }
 
   updateDireccion(id: number) {
+    if (this.direccion.trim() === '' || this.ciudad.trim() === '' || this.idusuario.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
     this.direccionService.updateDireccion(id, this.direccion, this.ciudad, this.idusuario).subscribe(() => {
       this.getAllDirecciones();
       });

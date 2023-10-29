@@ -27,8 +27,15 @@ export class HomePage {
       }
     );
   }
+  errorMessage: string = '';
 
+  // ...
+  
   crearUsuario() {
+    if (this.nombre.trim() === '' || this.correo.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
     const nuevoUsuario = {
       nombre: this.nombre,
       correo: this.correo,
@@ -45,6 +52,10 @@ export class HomePage {
   }
 
   updateUsuario(id: number) {
+    if (this.nombre.trim() === '' || this.correo.trim() === '') {
+      this.errorMessage = 'Error: Los campos no pueden estar vacíos';
+      return;
+    }
     this.usuarioService.updateUsuario(id, this.nombre, this.correo).subscribe(() => {
       this.getAllUsuarios();
       });

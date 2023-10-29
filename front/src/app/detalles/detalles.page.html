@@ -3,7 +3,7 @@
     <ion-title>
       Detalles
     </ion-title>
-    <ion-button color="light"><a href="/home">Home</a></ion-button>
+    <ion-button color="light"><a href="/home">Usuarios</a></ion-button>
     <ion-button color="light"><a href="/direcciones">Direcciones</a></ion-button>
     <ion-button color="light"><a href="/pedidos">Pedidos</a></ion-button>
   </ion-toolbar>
@@ -35,23 +35,26 @@
         </tr>
       </tbody>
     </table>
-
+    <div *ngIf="errorMessage" style="color: red;">
+      {{ errorMessage }}
+    </div>
     <form>
       <ion-item>
         <ion-label position="stacked">Cantidad</ion-label>
         <ion-input type="text" [(ngModel)]="cantidad" name="cantidad" required></ion-input>
+        <p *ngIf="productoError" [ngStyle]="{'color': 'red'}">El campo producto debe ser un número</p>
       </ion-item>
-
+  
       <ion-item>
         <ion-label position="stacked">Producto</ion-label>
         <ion-input type="text" [(ngModel)]="producto" name="producto" required></ion-input>
       </ion-item>
-
+  
       <ion-item>
         <ion-label position="stacked">ID Pedido</ion-label>
         <ion-input type="text" [(ngModel)]="idpedido" name="idpedido" required></ion-input>
       </ion-item>
-
+  
       <ion-button expand="block" (click)="crearDetalle()">Crear</ion-button>
     </form>
   </div> 

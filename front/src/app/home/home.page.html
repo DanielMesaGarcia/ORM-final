@@ -33,7 +33,9 @@
         </tr>
       </tbody>
     </table>
-
+    <div *ngIf="errorMessage" style="color: red;">
+      {{ errorMessage }}
+    </div>
     <form>
       <ion-item>
         <ion-label position="stacked">Nombre</ion-label>
